@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MotoStore">
+	
+	<path id="classpath">
+			<fileset dir="bin" includes="**/*.jar">
+			</fileset>
+			<pathelement location="bin" />
+	</path> 
+	
+	<target name="compile">
+		<mkdir dir="bin"/>
+		<javac srcdir="src" destdir="bin"/>
+	</target>
+	
+	<target name="jar">
+		<mkdir dir="bin/jar"/>
+		<jar destfile="bin/jar/MotoStore.jar" basedir="bin">
+			<manifest>
+				<attribute name="Main-Class" value="project.Main"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="run-jar" depends="jar">
+		<java jar="bin/jar/MotoStore.jar" fork="true"/>
+	</target> 
+
+	<target name="clean">
+		<delete dir="bin/jar">
+		</delete>
+	</target>
+
+</project>

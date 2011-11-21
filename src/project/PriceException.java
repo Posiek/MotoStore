@@ -2,6 +2,8 @@ package project;
 
 public class PriceException extends Exception {
 
+
+
 	/**
 	 * 
 	 */

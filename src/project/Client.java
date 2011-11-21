@@ -1,9 +1,13 @@
 package project;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import org.apache.log4j.*;
+
  
 public class Client {
+	
+	private static Logger logger = Logger.getLogger(Client.class);
+	
 	public String firstName;
 	public String surname;
 	public List<Motorcycle> MotoCatalog= new ArrayList<Motorcycle>();
@@ -14,19 +18,30 @@ public class Client {
 		this.MotoCatalog = new ArrayList<Motorcycle>();
 	}
 	
-	public void addMotorcycle(Motorcycle g) {
-		MotoCatalog.add(g);
+	public void addMotorcycle(Brand brand, String model, int yearOfManufacture,
+			int price) throws PriceException {
+		if (price > 0) {
+			MotoCatalog.add(new Motorcycle(brand, model, yearOfManufacture, price));
+			logger.info("addMotorcycle");
+		}
+		if (price <= 0)
+			throw new PriceException("Price cannot by less than 0");
 	}
+	
+	
 	
 	public void deleteMotorcycle(List<Motorcycle> MotoCatalog) {
 		for (Motorcycle Motorcycle : MotoCatalog) {
 		MotoCatalog.remove(Motorcycle);
 		
 		}
+		logger.info("deleteMotorcycle");
 	}
 
 	public void deleteAllMotorcycle() {
 		MotoCatalog.clear();
+		
+		logger.info("deleteAllMotorcycle");
 	}
 
 	public void editMotorcyclePrice(List<Motorcycle> MotoCatalog, int price) throws PriceException {

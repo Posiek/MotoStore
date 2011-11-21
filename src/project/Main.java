@@ -1,12 +1,24 @@
 package project;
 
+import org.apache.log4j.*;
+
 public class Main {
-	public static void main(String[] args){
+	
+	private static Logger logger = Logger.getLogger(Main.class);
+	
+	public static void main(String[] args) throws PriceException {
+		
+		PropertyConfigurator.configure("Log4J.properties");
+		
 		
 		Client cl= new Client("Jan", "Kowalski");
-		cl.addMotorcycle(new Motorcycle(Brand.Honda, "CBR 600RR", 59000, 2003));
-		cl.addMotorcycle(new Motorcycle(Brand.Suzuki, "GSXR 750", 64000, 2002));
-		cl.addMotorcycle(new Motorcycle(Brand.Yamaha, "R1", 56900, 2001));
+		try {
+			cl.addMotorcycle(Brand.Honda, "CBR 600RR", 59000, 2003);
+			cl.addMotorcycle(Brand.Suzuki, "GSXR 750", 64000, 2002);
+			cl.addMotorcycle(Brand.Yamaha, "R1", 56900, 2001);	
+		} catch (PriceException exception) {
+			logger.error(exception);
+		}
 
 		cl.printMotoCatalog();
 		}
