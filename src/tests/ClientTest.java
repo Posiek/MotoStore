@@ -50,7 +50,7 @@ public class ClientTest {
 
 	@Test
 	public void testDeleteMotorcycle() {
-		cl.deleteMotorcycle(cl.findAllMotorcycleByModel("CBR 600RR"));
+		cl.deleteMotorcycle(cl.findAllMotorcycleByYearOfManufacture(2003));
 		assertTrue(cl.getMotoCatalog().size() == 0);
 	}
 
@@ -62,18 +62,26 @@ public class ClientTest {
 	}
 
 	@Test
-	public void testEditMotorcyclePrice() {
-		fail("Not yet implemented");
+	public void testEditMotorcyclePrice() throws PriceException {
+		cl.addMotorcycle(Brand.Ducati, "Diavel", 59000, 2011);
+		cl.addMotorcycle(Brand.Ducati, "Multistrada 1200", 2011, 86099);
+		cl.editMotorcyclePrice(cl.findAllMotorcycleByYearOfManufacture(2011), 59000);
+		assertTrue(cl.getMotoCatalog().get(0).getPrice() == 59000);
+		assertTrue(cl.getMotoCatalog().get(1).getPrice() == 59000);
+		assertSame(59000, cl.getMotoCatalog().get(0).getPrice());
+		assertSame(59000, cl.getMotoCatalog().get(1).getPrice());
+		
 	}
 
 	@Test
-	public void testEditMotorcycleReleaseYear() {
-		fail("Not yet implemented");
+	public void testEditMotorcycleYearOfManufacture() {
+		cl.editMotorcycleYearOfManufacture(cl.findAllMotorcycleByBrand(Brand.Honda), 2003);
+		assertTrue(cl.getMotoCatalog().get(0).getYearOfManufacture() == 2003);
 	}
 
 	@Test
 	public void testFindAllMotorcycleByBrand() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
@@ -82,8 +90,11 @@ public class ClientTest {
 	}
 
 	@Test
-	public void testFindAllMotorcycleByYearOfManufacture() {
-		fail("Not yet implemented");
+	public void testFindAllMotorcycleByYearOfManufacture() throws PriceException {
+		cl.addMotorcycle(Brand.Honda, "CBR 600F4", 2001, 23990);
+		cl.addMotorcycle(Brand.Honda, "CBR 600F4i Sport", 2001, 31990);
+		assertEquals(cl.getMotoCatalog().get(1), cl.findAllMotorcycleByYearOfManufacture(2001).get(1));
+		assertSame(cl.getMotoCatalog().get(2), cl.findAllMotorcycleByYearOfManufacture(2001).get(2));
 	}
 
 	@Test

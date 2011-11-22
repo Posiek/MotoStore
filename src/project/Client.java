@@ -54,7 +54,7 @@ public class Client {
 			throw new PriceException("Price cannot by less than 0");
 	}
 
-	public void editMotorcycleReleaseYear(List<Motorcycle> MotoCatalog, int yearOfManufacture) {
+	public void editMotorcycleYearOfManufacture(List<Motorcycle> MotoCatalog, int yearOfManufacture) {
 		for (Motorcycle Motorcycle : MotoCatalog) {
 			Motorcycle.setYearOfManufacture(yearOfManufacture);
 		}
