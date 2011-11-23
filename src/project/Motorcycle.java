@@ -15,7 +15,7 @@ public class Motorcycle {
 	}
 	
 	public void printMotorcycle(){
-	System.out.println("Brand and model: " + this.brand + " " + this.model + "\tYear of manufacture: " + this.yearOfManufacture + "\t Price: " + this.price +" zl");
+	System.out.println("Brand and model: " + this.brand + " " + this.model + "\t Price: " + this.price +" zl" + "\tYear of manufacture: " + this.yearOfManufacture);
 	}
 
 	public Brand getBrand() {

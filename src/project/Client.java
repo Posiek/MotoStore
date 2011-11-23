@@ -18,10 +18,9 @@ public class Client {
 		this.MotoCatalog = new ArrayList<Motorcycle>();
 	}
 	
-	public void addMotorcycle(Brand brand, String model, int yearOfManufacture,
-			int price) throws PriceException {
+	public void addMotorcycle(Brand brand, String model, int price, int yearOfManufacture) throws PriceException {
 		if (price > 0) {
-			MotoCatalog.add(new Motorcycle(brand, model, yearOfManufacture, price));
+			MotoCatalog.add(new Motorcycle(brand, model, price, yearOfManufacture));
 			logger.info("addMotorcycle");
 		}
 		if (price <= 0)
